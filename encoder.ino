@@ -17,8 +17,8 @@
  conver_speedかpluse_cons_fdが0時だけcycle_timeで動作
  */
 unsigned int conv_speed =  3;     //コンベア速度 mm/sec
-unsigned int pluse_cons_fd = 10000; //FDのパルス定数 
-unsigned int cycle_time    = 8000;  //サイクルタイム 
+unsigned int pluse_cons_fd = 10000; //FDのパルス定数 palus/m
+unsigned int cycle_time    = 8000;  //サイクルタイム  usec
 
 
 unsigned int cnt = 0;   //カウンタ
@@ -33,7 +33,7 @@ void setup() {
 //速度 -> cycle_timeの計算
 unsigned int calc_wait_time(){
   if( pluse_cons_fd && conv_speed){
-       cycle_time = pluse_cons_fd / (conv_speed  / 4);
+       cycle_time = pluse_cons_fd / conv_speed;
   }
   return (cycle_time - BaseTime) / 4;
 }
